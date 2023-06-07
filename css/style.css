@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +8,8 @@
     font-weight: 700;
 }
 
-#map {
-    width: 20rem;
+#map-box {
     height: 20rem;
+    box-shadow: -3px -3px 7px #ffffff,
+        3px 3px 5px #a7a7ad;
 }
