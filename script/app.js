@@ -14,24 +14,29 @@ function displaySitesMarker() {
 }
 
 function siteDisplayList() {
+    const sitesBox = document.getElementById("site-box");
+
     placesData.features.forEach((place, i) => {
         place.properties.id = i;
 
-        const sitesBox = document.getElementById("site-box");
         const siteListing = document.createElement("div");
         const site = sitesBox.appendChild(siteListing);
         site.id = `listing-${place.properties.id}`;
-        site.className = "item";
+        site.className = "col col-6 col-sm-6 col-md-4 p-0 item";
+        // carousel-item
 
         const div = site.appendChild(document.createElement("div"));
+        div.className = "item-properties m-2 p-2 text-center shadow-sm bg-body rounded";
         div.innerHTML =
-            `<p>${place.properties.name}</p>
-             <p>${place.properties.address}</p>
-             <p>${place.properties.city}</p>
-             <p>${place.properties.country}</p>`;
+            `<p class="m-0 fw-bold">${place.properties.name},</p>
+             <p class="m-0 fs-6 fw-light lh-1">${place.properties.address}</p>
+             <p class="m-0 fs-6 fw-light lh-1">${place.properties.city}</p>
+             <p class="m-0 fs-6 fw-light lh-1">${place.properties.country}</p>`;
 
-        div.className = "item-properties";
-        console.log(sitesBox)
+
+        if (site.id === `listing-${0}`) {
+            site.classList.add("active");
+        }
     })
 }
 siteDisplayList();

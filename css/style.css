@@ -13,3 +13,9 @@
     box-shadow: -3px -3px 7px #ffffff,
         3px 3px 5px #a7a7ad;
 }
+
+.item-properties {
+    box-shadow: -3px -3px 7px #ffffff,
+    3px 3px 5px #a7a7ad;
+    height: 8rem;
+}

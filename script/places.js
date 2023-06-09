@@ -5,8 +5,8 @@ export const placesData = {
             "type": "Feature",
             "properties": {
                 "name": "Harewood House Trust",
-                "address": "Harewood House, Harewood",
-                "city": "Leeds LS17 9LG",
+                "address": "Harewood",
+                "city": "Leeds, LS17 9LG",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -22,7 +22,7 @@ export const placesData = {
             "properties": {
                 "name": "Leeds Art Gallery",
                 "address": "The Headrow",
-                "city": "Leeds LS1 3AA",
+                "city": "Leeds, LS1 3AA",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -38,7 +38,7 @@ export const placesData = {
             "properties": {
                 "name": "Royal Armouries Museum",
                 "address": "Armouries Dr",
-                "city": "Leeds LS10 1LT",
+                "city": "Leeds, LS10 1LT",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -54,7 +54,7 @@ export const placesData = {
             "properties": {
                 "name": "Kirkstall Abbey",
                 "address": "Abbey Rd, Kirkstall",
-                "city": "Leeds LS5 3EH",
+                "city": "Leeds, LS5 3EH",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -71,7 +71,7 @@ export const placesData = {
             "properties": {
                 "name": "Thackray Museum of Medicine",
                 "address": "141 Beckett St, Harehills",
-                "city": "Leeds LS9 7LN",
+                "city": "Leeds, LS9 7LN",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -87,7 +87,7 @@ export const placesData = {
             "properties": {
                 "name": "The Grand Theatre & Opera House Leeds",
                 "address": "Leeds Grand Theatre, 46 New Briggate",
-                "city": "Leeds LS1 6NU",
+                "city": "Leeds, LS1 6NU",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -103,7 +103,7 @@ export const placesData = {
             "properties": {
                 "name": "Leeds City Museum",
                 "address": "Millennium Square",
-                "city": "Leeds LS2 8BH",
+                "city": "Leeds, LS2 8BH",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -119,7 +119,7 @@ export const placesData = {
             "properties": {
                 "name": "Tropical World",
                 "address": "Princes Ave, Roundhay",
-                "city": "Leeds LS8 2ER",
+                "city": "Leeds, LS8 2ER",
                 "country": "United Kingdom"
             },
             "geometry": {
@@ -135,7 +135,7 @@ export const placesData = {
             "properties": {
                 "name": "Trinity Leeds",
                 "address": "27 Albion St",
-                "city": "Leeds LS1 5AT",
+                "city": "Leeds, LS1 5AT",
                 "country": "United Kingdom"
             },
             "geometry": {
