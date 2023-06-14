@@ -16,6 +16,27 @@
 
 .item-properties {
     box-shadow: -3px -3px 7px #ffffff,
-    3px 3px 5px #a7a7ad;
+        3px 3px 5px #a7a7ad;
     height: 8rem;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

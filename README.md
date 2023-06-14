@@ -28,6 +28,7 @@ Neighbourhood Map Project, is a project built with Vanilla Javascript
   - [Google search](https://www.google.com/)
   - [MDN web docs](https://developer.mozilla.org/en-US/)
   - [CSS-Tricks](https://css-tricks.com/)
+  - [Swiper](https://swiperjs.com/)
 
 - **API**
   - [Leaflet Map API](https://leafletjs.com/examples/quick-start/)

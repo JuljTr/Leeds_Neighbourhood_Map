@@ -6,6 +6,18 @@ const tileURL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const tiles = L.tileLayer(tileURL, { attribution }).addTo(map);
 
 
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    cssMode: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    mousewheel: true,
+    keyboard: true,
+});
+
 function displaySitesMarker() {
     placesData.features.forEach(place => {
         let layer = L.marker(place.geometry.coordinates);
@@ -22,8 +34,7 @@ function siteDisplayList() {
         const siteListing = document.createElement("div");
         const site = sitesBox.appendChild(siteListing);
         site.id = `listing-${place.properties.id}`;
-        site.className = "col col-6 col-sm-6 col-md-4 p-0 item";
-        // carousel-item
+        site.className = "col col-6 col-sm-6 col-md-4 p-0 item swiper-slide";
 
         const div = site.appendChild(document.createElement("div"));
         div.className = "item-properties m-2 p-2 text-center shadow-sm bg-body rounded";
@@ -39,5 +50,9 @@ function siteDisplayList() {
         }
     })
 }
+
+// map.flyTo({
+
+// })
 siteDisplayList();
 document.addEventListener("DOMContentLoaded", displaySitesMarker);
