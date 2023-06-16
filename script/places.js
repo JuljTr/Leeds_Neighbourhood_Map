@@ -85,8 +85,8 @@ export const placesData = {
         {
             "type": "Feature",
             "properties": {
-                "name": "The Grand Theatre & Opera House Leeds",
-                "address": "Leeds Grand Theatre, 46 New Briggate",
+                "name": "The Grand Theatre & Opera House",
+                "address": "46 New Briggate",
                 "city": "Leeds, LS1 6NU",
                 "country": "United Kingdom"
             },
@@ -166,7 +166,7 @@ export const placesData = {
             "type": "Feature",
             "properties": {
                 "name": "Abbey House Museum",
-                "address": "Abbey Walk, Abbey Rd, Kirkstall",
+                "address": "Abbey Rd, Kirkstall",
                 "city": "Leeds LS5 3EH",
                 "country": "United Kingdom"
             },
@@ -182,7 +182,7 @@ export const placesData = {
             "type": "Feature",
             "properties": {
                 "name": "RSPB St Aidan's",
-                "address": "RSPB St Aidan's Nature Park, Astley Ln",
+                "address": "Astley Ln",
                 "city": "Leeds LS26 8AL",
                 "country": "United Kingdom"
             },
@@ -197,7 +197,7 @@ export const placesData = {
         {
             "type": "Feature",
             "properties": {
-                "name": "Leeds Industrial Museum at Armley Mills",
+                "name": "Leeds Industrial Museum",
                 "address": "Canal Rd, Armley",
                 "city": "Leeds, LS12 2QF",
                 "country": "United Kingdom"

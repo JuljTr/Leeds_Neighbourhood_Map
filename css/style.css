@@ -8,6 +8,13 @@
     font-weight: 700;
 }
 
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+
 #map-box {
     height: 20rem;
     box-shadow: -3px -3px 7px #ffffff,
@@ -39,4 +46,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.item-properties {
+    height: 10rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .item-properties {
+        height: 11rem;
+    }
 }

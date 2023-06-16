@@ -1,5 +1,6 @@
 import { placesData } from './places.js';
 
+const sitesBox = document.getElementById("site-box");
 const map = L.map("map-box").setView([53.7947, -1.5025], 11);
 const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 const tileURL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -18,41 +19,42 @@ var swiper = new Swiper(".mySwiper", {
     keyboard: true,
 });
 
+
+placesData.features.forEach((place, i) => {
+    place.properties.id = i;
+});
+
 function displaySitesMarker() {
     placesData.features.forEach(place => {
-        let layer = L.marker(place.geometry.coordinates);
-        layer.addTo(map);
-    })
+        let layer = L.marker(place.geometry.coordinates)
+            .addTo(map)
+            .bindPopup(`<h6>${place.properties.name}</h6>
+            <p class="m-0">${place.properties.address}</p>
+            <p class="m-0">${place.properties.city}</p>`)
+            .closePopup();
+    });
 }
 
 function siteDisplayList() {
-    const sitesBox = document.getElementById("site-box");
-
-    placesData.features.forEach((place, i) => {
-        place.properties.id = i;
-
+    for (const place of placesData.features) {
         const siteListing = document.createElement("div");
         const site = sitesBox.appendChild(siteListing);
         site.id = `listing-${place.properties.id}`;
-        site.className = "col col-6 col-sm-6 col-md-4 p-0 item swiper-slide";
+        site.className = "m-0 col col-5 p-2 item swiper-slide";
 
         const div = site.appendChild(document.createElement("div"));
-        div.className = "item-properties m-2 p-2 text-center shadow-sm bg-body rounded";
+        div.className = "item-properties d-flex flex-column justify-content-between p-0 p-sm-4 text-center shadow-sm bg-body rounded";
         div.innerHTML =
-            `<p class="m-0 fw-bold">${place.properties.name},</p>
-             <p class="m-0 fs-6 fw-light lh-1">${place.properties.address}</p>
+            `<p class="m-0 fw-bold lh-1">${place.properties.name}</p>
+             <p class="m-0 fs-6 fw-light lh-1 pt-1">${place.properties.address}</p>
              <p class="m-0 fs-6 fw-light lh-1">${place.properties.city}</p>
              <p class="m-0 fs-6 fw-light lh-1">${place.properties.country}</p>`;
-
-
-        if (site.id === `listing-${0}`) {
-            site.classList.add("active");
-        }
-    })
+        
+        site.addEventListener("click", ()=>{
+            map.flyTo(place.geometry.coordinates, 17);
+        })
+    }
+    displaySitesMarker()
 }
 
-// map.flyTo({
-
-// })
-siteDisplayList();
-document.addEventListener("DOMContentLoaded", displaySitesMarker);
+document.addEventListener("DOMContentLoaded",siteDisplayList);

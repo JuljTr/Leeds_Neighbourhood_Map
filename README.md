@@ -15,6 +15,9 @@
 [(Back to top)](#table-of-contents)
 
 Neighbourhood Map Project, is a project built with Vanilla Javascript 
+Used open-source Leaflet JavaScript library to add the map 
+Added markers for every site listing using their co-ordinates
+Added Swiper library to style site listing 
 
 ## Tools Used
 
