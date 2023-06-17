@@ -27,11 +27,15 @@ placesData.features.forEach((place, i) => {
 function displaySitesMarker() {
     placesData.features.forEach(place => {
         let layer = L.marker(place.geometry.coordinates)
-            .addTo(map)
             .bindPopup(`<h6>${place.properties.name}</h6>
             <p class="m-0">${place.properties.address}</p>
             <p class="m-0">${place.properties.city}</p>`)
-            .closePopup();
+            .closePopup()
+            .addTo(map);
+
+        layer.on("click", () => {
+            map.flyTo(place.geometry.coordinates, 17)
+        })
     });
 }
 
@@ -49,12 +53,12 @@ function siteDisplayList() {
              <p class="m-0 fs-6 fw-light lh-1 pt-1">${place.properties.address}</p>
              <p class="m-0 fs-6 fw-light lh-1">${place.properties.city}</p>
              <p class="m-0 fs-6 fw-light lh-1">${place.properties.country}</p>`;
-        
-        site.addEventListener("click", ()=>{
+
+        site.addEventListener("click", () => {
             map.flyTo(place.geometry.coordinates, 17);
         })
     }
-    displaySitesMarker()
+    displaySitesMarker();
 }
 
-document.addEventListener("DOMContentLoaded",siteDisplayList);
+document.addEventListener("DOMContentLoaded", siteDisplayList);
