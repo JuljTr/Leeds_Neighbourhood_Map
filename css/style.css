@@ -52,6 +52,21 @@ body {
     height: 10rem;
 }
 
+#weather-container {
+    background-color: #e5edff;
+    color: #002233;
+}
+
+#weather-text{
+    font-weight: 300;
+}
+
+#weather-info {
+    width: auto;
+    height: 5rem;
+    border: 2px solid #002233;
+    border-radius: 10%;
+}
 @media only screen and (max-width: 600px) {
     .item-properties {
         height: 11rem;
