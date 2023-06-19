@@ -65,5 +65,8 @@ function siteDisplayList() {
 document.addEventListener("DOMContentLoaded", siteDisplayList);
 
 getWeatherData(10, 10, Intl.DateTimeFormat().resolvedOptions().timezone)
-.then( res => {console.log(res.data)})
-.catch(res => {console.log(res.data)})
+.then( renderWeather)
+.catch(error => {
+    console.log(error)
+    alert("Error getting weather")
+});
