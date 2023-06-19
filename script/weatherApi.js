@@ -13,3 +13,22 @@ export function getWeatherData(lat, lon, timezone) {
     })
 }
 
+function parseCurrentWeather({ current_weather, daily }) {
+    const { temperature: currentTemp, weathercode: iconCode } = current_weather
+    const { temperature_2m_max: [maxTemp]} = daily
+    return {
+        currentTemp: Math.round(currentTemp),
+        iconCode
+    }
+}
+
+function parseDailyWeather({ daily }) {
+    return daily.time.map((time, index) => {
+        return {
+            timestamp: time * 1000,
+            iconCode: daily.weathercode[index],
+            maxTemp: Math.round(daily.temperature_2m_max[index])
+        }
+    })
+}
+
