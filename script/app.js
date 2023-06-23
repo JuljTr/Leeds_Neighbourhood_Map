@@ -1,4 +1,5 @@
 import { placesData } from './places.js';
+import { getWeatherData } from './weatherApi.js';
 
 const sitesBox = document.getElementById("site-box");
 const map = L.map("map-box").setView([53.7947, -1.5025], 11);
@@ -98,3 +99,10 @@ function getWeatherApi() {
 
 document.addEventListener("DOMContentLoaded", siteDisplayList);
 document.addEventListener("DOMContentLoaded", getWeatherApi);
+
+getWeatherData(10, 10, Intl.DateTimeFormat().resolvedOptions().timezone)
+.then( renderWeather)
+.catch(error => {
+    console.log(error)
+    alert("Error getting weather")
+});
