@@ -73,13 +73,24 @@ function convertDay(day, fn) {
     let secondEl = fn(dayTwo);
     let thirdEl = fn(dayThree);
 
-    let currentDay = document.body.querySelector("#current-day");
-    let secondDay = document.body.querySelector("#second-day");
-    let thirdDay = document.body.querySelector("#third-day");
+    const currentDay = document.body.querySelector("#current-day");
+    const secondDay = document.body.querySelector("#second-day");
+    const thirdDay = document.body.querySelector("#third-day");
 
     currentDay.textContent = currEl;
     secondDay.textContent = secondEl;
     thirdDay.textContent = thirdEl;
+}
+
+function setTemperature(temp) {
+    let [tempOne, tempTwo, tempThree] = temp;
+    const currentTemp = document.getElementById("current-temp");
+    const secondTemp = document.getElementById("second-temp");
+    const thirdTemp = document.getElementById("third-temp");
+
+    currentTemp.textContent = Math.floor(tempOne);
+    secondTemp.textContent = Math.floor(tempTwo);
+    thirdTemp.textContent = Math.floor(tempThree);
 }
 
 function getWeatherApi() {
@@ -91,9 +102,10 @@ function getWeatherApi() {
             return res.json();
         })
         .then(data => {
-            console.log(data.daily.time)
-            console.log(convertDay(data.daily.time, getDay))
-
+            console.log(data)
+            console.log(data.daily.temperature_2m_max)
+            convertDay(data.daily.time, getDay);
+            setTemperature(data.daily.temperature_2m_max);
         })
 }
 
