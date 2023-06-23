@@ -60,6 +60,27 @@ function siteDisplayList() {
     displaySitesMarker();
 }
 
+function getDay(el) {
+    const date = new Date(el * 1000);
+    return date.toLocaleString('en-GB', { weekday: 'long' }).slice(0, 3);
+}
+
+function convertDay(day, fn) {
+    let [dayOne, dayTwo, dayThree] = day;
+
+    let currEl = fn(dayOne);
+    let secondEl = fn(dayTwo);
+    let thirdEl = fn(dayThree);
+
+    let currentDay = document.body.querySelector("#current-day");
+    let secondDay = document.body.querySelector("#second-day");
+    let thirdDay = document.body.querySelector("#third-day");
+
+    currentDay.textContent = currEl;
+    secondDay.textContent = secondEl;
+    thirdDay.textContent = thirdEl;
+}
+
 function getWeatherApi() {
     const lat = 53.7947;
     const lon = -1.5025;
@@ -68,7 +89,11 @@ function getWeatherApi() {
         .then(res => {
             return res.json();
         })
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data.daily.time)
+            console.log(convertDay(data.daily.time, getDay))
+
+        })
 }
 
 document.addEventListener("DOMContentLoaded", siteDisplayList);
