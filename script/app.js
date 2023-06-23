@@ -100,9 +100,3 @@ function getWeatherApi() {
 document.addEventListener("DOMContentLoaded", siteDisplayList);
 document.addEventListener("DOMContentLoaded", getWeatherApi);
 
-getWeatherData(10, 10, Intl.DateTimeFormat().resolvedOptions().timezone)
-.then( renderWeather)
-.catch(error => {
-    console.log(error)
-    alert("Error getting weather")
-});
