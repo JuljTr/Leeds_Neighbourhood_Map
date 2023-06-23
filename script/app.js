@@ -6,7 +6,6 @@ const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">Ope
 const tileURL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const tiles = L.tileLayer(tileURL, { attribution }).addTo(map);
 
-
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
@@ -61,4 +60,16 @@ function siteDisplayList() {
     displaySitesMarker();
 }
 
+function getWeatherApi() {
+    const lat = 53.7947;
+    const lon = -1.5025;
+
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum&timeformat=unixtime&forecast_days=3&timezone=Europe%2FLondon`)
+        .then(res => {
+            return res.json();
+        })
+        .then(data => console.log(data))
+}
+
 document.addEventListener("DOMContentLoaded", siteDisplayList);
+document.addEventListener("DOMContentLoaded", getWeatherApi);
