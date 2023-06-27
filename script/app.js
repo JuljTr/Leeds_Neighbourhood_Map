@@ -1,5 +1,5 @@
+import { iconMap } from './iconMap.js';
 import { placesData } from './places.js';
-import { getWeatherData } from './weatherApi.js';
 
 const sitesBox = document.getElementById("site-box");
 const map = L.map("map-box").setView([53.7947, -1.5025], 11);
@@ -9,7 +9,7 @@ const tiles = L.tileLayer(tileURL, { attribution }).addTo(map);
 
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
-    spaceBetween: 30,
+    spaceBetween: 10,
     cssMode: true,
     navigation: {
         nextEl: ".swiper-button-next",
@@ -17,6 +17,24 @@ var swiper = new Swiper(".mySwiper", {
     },
     mousewheel: true,
     keyboard: true,
+    breakpoints: {
+        "@0.00": {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
+        "@0.75": {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
+        "@1.00": {
+            slidesPerView: 3,
+            spaceBetween: 30,
+        },
+        "@1.50": {
+            slidesPerView: 4,
+            spaceBetween: 40,
+        },
+    },
 });
 
 
@@ -93,6 +111,16 @@ function setTemperature(temp) {
     thirdTemp.textContent = Math.floor(tempThree);
 }
 
+function getIcon(iconCode) {
+    let [iconOne, iconTwo, iconThree] = iconCode;
+    const currentIcon = document.querySelector("[data-current-icon]");
+    const secondIcon = document.querySelector("[data-second-icon]");
+    const thirdIcon = document.querySelector("[data-third-icon]");
+
+    currentIcon.innerHTML = `<img src="./icons/${iconMap.get(iconOne)}.svg">`;
+    secondIcon.innerHTML = `<img src="./icons/${iconMap.get(iconTwo)}.svg">`;
+    thirdIcon.innerHTML = `<img src="./icons/${iconMap.get(iconThree)}.svg">`;
+}
 function getWeatherApi() {
     const lat = 53.7947;
     const lon = -1.5025;
@@ -103,7 +131,8 @@ function getWeatherApi() {
         })
         .then(data => {
             console.log(data)
-            console.log(data.daily.temperature_2m_max)
+            console.log(data.daily.weathercode)
+            getIcon(data.daily.weathercode);
             convertDay(data.daily.time, getDay);
             setTemperature(data.daily.temperature_2m_max);
         })

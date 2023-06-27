@@ -67,8 +67,7 @@ body {
     border: 2px solid #002233;
     border-radius: 10%;
 }
-@media only screen and (max-width: 600px) {
-    .item-properties {
-        height: 11rem;
-    }
+
+img {
+    width: 1.3rem;
 }
