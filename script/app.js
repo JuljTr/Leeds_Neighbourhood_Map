@@ -1,46 +1,15 @@
-import { iconMap } from './iconMap.js';
 import { placesData } from './places.js';
+import { getIcon } from './temperature.js';
+import { setTemperature } from './temperature.js';
+import { getDay } from './temperature.js';
+import { convertDay } from './temperature.js';
+import { swiperJs } from './swiper.js';
 
 const sitesBox = document.getElementById("site-box");
 const map = L.map("map-box").setView([53.7947, -1.5025], 11);
 const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 const tileURL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const tiles = L.tileLayer(tileURL, { attribution }).addTo(map);
-
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    spaceBetween: 10,
-    cssMode: true,
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    mousewheel: true,
-    keyboard: true,
-    breakpoints: {
-        "@0.00": {
-            slidesPerView: 2,
-            spaceBetween: 30,
-        },
-        "@0.75": {
-            slidesPerView: 2,
-            spaceBetween: 30,
-        },
-        "@1.00": {
-            slidesPerView: 3,
-            spaceBetween: 30,
-        },
-        "@1.50": {
-            slidesPerView: 4,
-            spaceBetween: 40,
-        },
-    },
-});
-
-
-placesData.features.forEach((place, i) => {
-    place.properties.id = i;
-});
 
 function displaySitesMarker() {
     placesData.features.forEach(place => {
@@ -58,6 +27,10 @@ function displaySitesMarker() {
 }
 
 function siteDisplayList() {
+    placesData.features.forEach((place, i) => {
+        place.properties.id = i;
+    });
+
     for (const place of placesData.features) {
         const siteListing = document.createElement("div");
         const site = sitesBox.appendChild(siteListing);
@@ -79,48 +52,6 @@ function siteDisplayList() {
     displaySitesMarker();
 }
 
-function getDay(el) {
-    const date = new Date(el * 1000);
-    return date.toLocaleString('en-GB', { weekday: 'long' }).slice(0, 3);
-}
-
-function convertDay(day, fn) {
-    let [dayOne, dayTwo, dayThree] = day;
-
-    let currEl = fn(dayOne);
-    let secondEl = fn(dayTwo);
-    let thirdEl = fn(dayThree);
-
-    const currentDay = document.body.querySelector("#current-day");
-    const secondDay = document.body.querySelector("#second-day");
-    const thirdDay = document.body.querySelector("#third-day");
-
-    currentDay.textContent = currEl;
-    secondDay.textContent = secondEl;
-    thirdDay.textContent = thirdEl;
-}
-
-function setTemperature(temp) {
-    let [tempOne, tempTwo, tempThree] = temp;
-    const currentTemp = document.getElementById("current-temp");
-    const secondTemp = document.getElementById("second-temp");
-    const thirdTemp = document.getElementById("third-temp");
-
-    currentTemp.textContent = Math.floor(tempOne);
-    secondTemp.textContent = Math.floor(tempTwo);
-    thirdTemp.textContent = Math.floor(tempThree);
-}
-
-function getIcon(iconCode) {
-    let [iconOne, iconTwo, iconThree] = iconCode;
-    const currentIcon = document.querySelector("[data-current-icon]");
-    const secondIcon = document.querySelector("[data-second-icon]");
-    const thirdIcon = document.querySelector("[data-third-icon]");
-
-    currentIcon.innerHTML = `<img src="./icons/${iconMap.get(iconOne)}.svg">`;
-    secondIcon.innerHTML = `<img src="./icons/${iconMap.get(iconTwo)}.svg">`;
-    thirdIcon.innerHTML = `<img src="./icons/${iconMap.get(iconThree)}.svg">`;
-}
 function getWeatherApi() {
     const lat = 53.7947;
     const lon = -1.5025;
@@ -130,14 +61,38 @@ function getWeatherApi() {
             return res.json();
         })
         .then(data => {
-            console.log(data)
-            console.log(data.daily.weathercode)
             getIcon(data.daily.weathercode);
             convertDay(data.daily.time, getDay);
             setTemperature(data.daily.temperature_2m_max);
         })
 }
 
+
+function getPhotoGallery() {
+    fetch("https://api.unsplash.com/photos/?query=leeds&client_id=WdfepevhiWFE9VB3-aC2TWHc7Drsrl9rieYiSOHPSsc")
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            console.log(data)
+            const carouselBody = document.querySelector("[data-carousel-main]");
+
+            for (const el of data) {
+                const newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "carousel-item");
+                carouselBody.appendChild(newDiv);
+
+                const img = document.createElement("img");
+                img.setAttribute("src", `${el.links.download}`);
+                img.setAttribute("class", "d-block w-100");
+                newDiv.appendChild(img);
+            }
+            carouselBody.firstElementChild.classList.add("active");
+        })
+}
+
 document.addEventListener("DOMContentLoaded", siteDisplayList);
 document.addEventListener("DOMContentLoaded", getWeatherApi);
+document.addEventListener("DOMContentLoaded", swiperJs);
+document.addEventListener("DOMContentLoaded", getPhotoGallery);
 

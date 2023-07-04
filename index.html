@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome Kit -->
-    <script src="https://kit.fontawesome.com/b94c992415.js" crossorigin="anonymous"></script>
     <!-- Swiper Link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <!-- Bootstrap CSS Link -->
@@ -59,15 +57,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="row shadow-sm rounded">city photos</div>
-            </div>
+                <div class="row shadow-sm rounded">
+                    <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0"
+                                class="active"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="3"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="4"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="5"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="6"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="7"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="8"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="9"></button>
+                        </div>
 
-            <div class="swiper mySwiper w-100">
-                <div id="site-box" class="swiper-wrapper "></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                        <div class="carousel-inner" data-carousel-main> </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="swiper mySwiper w-100">
+            <div id="site-box" class="swiper-wrapper "></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
     </div>
 
     <!-- Swiper JS Link -->
