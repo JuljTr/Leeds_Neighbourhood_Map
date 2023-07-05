@@ -57,7 +57,7 @@ body {
     color: #002233;
 }
 
-#weather-text{
+#weather-text {
     font-weight: 300;
 }
 
@@ -70,4 +70,12 @@ body {
 
 img {
     width: 1.3rem;
+}
+
+.figure.tag {
+    position: absolute;
+    top: 2rem;
+    color: white;
+    background: orange;
+    padding: 0.2rem 0.5rem;
 }

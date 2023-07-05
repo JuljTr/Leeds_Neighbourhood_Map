@@ -69,21 +69,25 @@ function getWeatherApi() {
 
 
 function getPhotoGallery() {
-    fetch("https://api.unsplash.com/photos/?query=leeds&client_id=WdfepevhiWFE9VB3-aC2TWHc7Drsrl9rieYiSOHPSsc")
+    fetch("https://api.unsplash.com/search/photos/?query=leeds&orientation=landscape&client_id=WdfepevhiWFE9VB3-aC2TWHc7Drsrl9rieYiSOHPSsc")
         .then(res => {
             return res.json();
         })
         .then(data => {
-            console.log(data)
             const carouselBody = document.querySelector("[data-carousel-main]");
 
-            for (const el of data) {
+            for (const el of data.results) {
                 const newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "carousel-item");
                 carouselBody.appendChild(newDiv);
 
+                const text = document.createElement("p");
+                text.className = "figure tag";
+                text.innerHTML = `Photo by <a href="${el.user.links.html}?utm_source=your_app_name&utm_medium=referral">${el.user.name}</a> on <a href="https://unsplash.com/?utm_source=your_app_name&utm_medium=referral">Unsplash</a>`
+                newDiv.appendChild(text);
+
                 const img = document.createElement("img");
-                img.setAttribute("src", `${el.links.download}`);
+                img.setAttribute("src", `${el.urls.regular}`);
                 img.setAttribute("class", "d-block w-100");
                 newDiv.appendChild(img);
             }
