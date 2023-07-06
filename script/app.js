@@ -83,7 +83,7 @@ function getPhotoGallery() {
 
                 const text = document.createElement("p");
                 text.className = "figure tag";
-                text.innerHTML = `Photo by <a href="${el.user.links.html}?utm_source=your_app_name&utm_medium=referral">${el.user.name}</a> on <a href="https://unsplash.com/?utm_source=your_app_name&utm_medium=referral">Unsplash</a>`
+                text.innerHTML = `<small>by</small> <a href="${el.user.links.html}" class="link">${el.user.name}</a> <small>on</small> <a href="https://unsplash.com/" class="link">Unsplash</a>`
                 newDiv.appendChild(text);
 
                 const img = document.createElement("img");

@@ -15,6 +15,15 @@ body {
 }
 
 
+.carousel {
+    height: 35vh;
+}
+
+.carousel-item img{
+    height: 35vh;
+}
+
+
 #map-box {
     height: 20rem;
     box-shadow: -3px -3px 7px #ffffff,
@@ -54,6 +63,9 @@ body {
 
 #weather-container {
     background-color: #e5edff;
+}
+
+.weather-inner-box{
     color: #002233;
 }
 
@@ -61,21 +73,28 @@ body {
     font-weight: 300;
 }
 
-#weather-info {
-    width: auto;
-    height: 5rem;
+.weather-info {
     border: 2px solid #002233;
     border-radius: 10%;
 }
 
-img {
-    width: 1.3rem;
+.weather-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-right: 0.2rem;
 }
 
 .figure.tag {
     position: absolute;
-    top: 2rem;
-    color: white;
-    background: orange;
+    top: 1rem;
+    color: rgb(12, 12, 12);
+    background: rgba(248, 247, 246, 0.5);
     padding: 0.2rem 0.5rem;
+    font-size: x-small;
 }
+
+.link,a:link {
+    text-decoration: none;
+    color: rgb(12, 12, 12);
+}
+
