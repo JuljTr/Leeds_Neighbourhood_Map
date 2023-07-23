@@ -1,7 +1,7 @@
 import { iconMap } from './iconMap.js';
 
-export function getIcon(iconCode) {
-    let [iconOne, iconTwo, iconThree] = iconCode;
+export function displayWeatherIcons(iconCodes) {
+    let [iconOne, iconTwo, iconThree] = iconCodes;
     const currentIcon = document.querySelector("[data-current-icon]");
     const secondIcon = document.querySelector("[data-second-icon]");
     const thirdIcon = document.querySelector("[data-third-icon]");

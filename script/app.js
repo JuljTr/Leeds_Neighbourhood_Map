@@ -1,40 +1,32 @@
 import { placesData } from './places.js';
-import { getIcon } from './temperature.js';
-import { setTemperature } from './temperature.js';
-import { getDay } from './temperature.js';
-import { convertDay } from './temperature.js';
-import { swiperJs } from './swiper.js';
+import { displayWeatherIcons, convertDay, getDay, setTemperature } from './temperature.js';
+import { initializeSwiper } from './swiper.js';
 
 const sitesBox = document.getElementById("site-box");
 const map = L.map("map-box").setView([53.7947, -1.5025], 11);
 const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 const tileURL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-const tiles = L.tileLayer(tileURL, { attribution }).addTo(map);
+L.tileLayer(tileURL, { attribution }).addTo(map);
 
-function displaySitesMarker() {
+function addMarkersToMap() {
     placesData.features.forEach(place => {
-        let layer = L.marker(place.geometry.coordinates)
+        const marker = L.marker(place.geometry.coordinates)
             .bindPopup(`<h6>${place.properties.name}</h6>
             <p class="m-0">${place.properties.address}</p>
             <p class="m-0">${place.properties.city}</p>`)
-            .closePopup()
             .addTo(map);
 
-        layer.on("click", () => {
+        marker.on("click", () => {
             map.flyTo(place.geometry.coordinates, 17)
         })
     });
 }
 
-function siteDisplayList() {
-    placesData.features.forEach((place, i) => {
-        place.properties.id = i;
-    });
-
-    for (const place of placesData.features) {
+function renderPlacesCarousel() {
+    placesData.features.forEach((place, index) => {
         const siteListing = document.createElement("div");
         const site = sitesBox.appendChild(siteListing);
-        site.id = `listing-${place.properties.id}`;
+        site.id = `place-listing-${index}`;
         site.className = "m-0 col col-5 p-2 item swiper-slide";
 
         const div = site.appendChild(document.createElement("div"));
@@ -48,11 +40,12 @@ function siteDisplayList() {
         site.addEventListener("click", () => {
             map.flyTo(place.geometry.coordinates, 17);
         })
-    }
-    displaySitesMarker();
+    });
+
+    addMarkersToMap();
 }
 
-function getWeatherApi() {
+function renderWeatherDetails() {
     const lat = 53.7947;
     const lon = -1.5025;
 
@@ -61,14 +54,14 @@ function getWeatherApi() {
             return res.json();
         })
         .then(data => {
-            getIcon(data.daily.weathercode);
+            displayWeatherIcons(data.daily.weathercode);
             convertDay(data.daily.time, getDay);
             setTemperature(data.daily.temperature_2m_max);
         })
 }
 
 
-function getPhotoGallery() {
+function renderPhotoGallery() {
     fetch("https://api.unsplash.com/search/photos/?query=leeds&orientation=landscape&client_id=WdfepevhiWFE9VB3-aC2TWHc7Drsrl9rieYiSOHPSsc")
         .then(res => {
             return res.json();
@@ -95,8 +88,8 @@ function getPhotoGallery() {
         })
 }
 
-document.addEventListener("DOMContentLoaded", siteDisplayList);
-document.addEventListener("DOMContentLoaded", getWeatherApi);
-document.addEventListener("DOMContentLoaded", swiperJs);
-document.addEventListener("DOMContentLoaded", getPhotoGallery);
+document.addEventListener("DOMContentLoaded", renderWeatherDetails);
+document.addEventListener("DOMContentLoaded", initializeSwiper);
+document.addEventListener("DOMContentLoaded", renderPlacesCarousel);
+document.addEventListener("DOMContentLoaded", renderPhotoGallery);
 
